@@ -56,9 +56,9 @@ class Stack<Template>
         Swift.print("-----------------------------")
         Swift.print("Stack data of \(self.count())/\(self.size) elements:")
         var currentNode: Node<Template> = self.topNode
-        while let _ = currentNode.value {
+        while let v = currentNode.value {
             // print() will cause error because it refers to self.print(), use global function Swift.print() instead
-            Swift.print("-*[ \(currentNode.value) ]*-")
+            Swift.print("-*[ \(String(describing: v)) ]*-")
             currentNode = currentNode.next!
         }
         Swift.print("-----------------------------")
@@ -105,6 +105,18 @@ class Stack<Template>
 
 // TEST ZONE ===============================================
 
+class Book : CustomStringConvertible {
+    var title: String
+    var author: String
+    init(title: String, author: String) {
+        self.title = title
+        self.author = author
+    }
+    public var description: String { // toString()
+        return String("Title: \(self.title) - Author: \(self.author)");
+    }
+}
+
 let SIZE = 5 // SIZE <= 0 or > 10 will cause error, change the range in Stack.init()
 
 do {
@@ -124,8 +136,17 @@ do {
         print("<-- \(try myIntStack.pop()) popped!")
     }
     // pop nothing
-    print("<-- \(try myIntStack.pop()) try to pop again, causes error!")
+    //print("<-- \(try myIntStack.pop()) try to pop again, causes error!")
+    
+    print("=====================")
+    
+    var bookStack = try Stack<Book>(size: 3)
+    var book: Book = Book(title: "bbbb", author:"ccc")
+    try bookStack.push(element: Book(title: "Book1", author: "Author1"))
+    try bookStack.push(element: Book(title: "Book2", author: "Author2"))
+    try bookStack.print()
 } catch let stackError as StackError {
     print("Error: \(stackError)")
 }
+
 
