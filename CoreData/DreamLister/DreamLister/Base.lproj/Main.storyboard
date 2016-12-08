@@ -34,11 +34,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="149" id="E7S-Dv-LZA">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="149"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="150" id="E7S-Dv-LZA" customClass="ItemCell" customModule="DreamLister" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E7S-Dv-LZA" id="Hul-H6-AC5">
-                                            <frame key="frameInset" width="343" height="148"/>
+                                            <frame key="frameInset" width="343" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ngU-l1-twa">
@@ -99,6 +99,12 @@
                                                 <constraint firstItem="ngU-l1-twa" firstAttribute="leading" secondItem="Hul-H6-AC5" secondAttribute="leadingMargin" id="kqp-gi-hfZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="details" destination="KtV-my-Yzo" id="IsM-Ie-4HK"/>
+                                            <outlet property="price" destination="25o-Za-Xn3" id="VbY-gJ-Vbj"/>
+                                            <outlet property="thumb" destination="z1N-vd-bYC" id="tKU-My-Z6a"/>
+                                            <outlet property="title" destination="rUS-DE-SOz" id="tMU-rP-UFM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -119,6 +125,10 @@
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segment" destination="NmW-FB-Cyn" id="mUZ-Ut-myK"/>
+                        <outlet property="tableView" destination="6gF-hQ-P7c" id="V8X-R5-CgB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,7 +139,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vQr-zt-2d1" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rMw-IN-gGw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rMw-IN-gGw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
