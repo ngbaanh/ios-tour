@@ -22,7 +22,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         tableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
         
-        generateTestData()
+        //generateTestData()
         attempFetch()
     }
     
@@ -36,6 +36,27 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         let item = fetchedResultsController.object(at: indexPath as IndexPath)
         cell.configuareCell(item: item)
     }
+    
+    //=====================
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let objs = fetchedResultsController.fetchedObjects , objs.count > 0 {
+            let item = objs[indexPath.row]
+            performSegue(withIdentifier: "ItemDetailsVC", sender: item)
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ItemDetailsVC" {
+            if let destination = segue.destination as? ItemDetailsVC {
+                if let item = sender as? Item {
+                    destination.itemToEdit = item
+                }
+            }
+        }
+    }
+    //=====================
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchedResultsController.sections {
@@ -62,6 +83,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         fetchRequest.sortDescriptors = [dateSort]
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = self // auto refresh after adding new
         self.fetchedResultsController = controller
         
         do {
